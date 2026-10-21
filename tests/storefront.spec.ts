@@ -6,6 +6,7 @@ test('renders the storefront and filters products by search', async ({ page }) =
   await expect(page).toHaveTitle(/Asri Collection/);
   await expect(page.getByRole('heading', { name: /Feel good\./ })).toBeVisible();
   await expect(page.locator('.product-card')).toHaveCount(8);
+  await page.screenshot({ path: 'test-results/storefront-desktop.png', fullPage: true });
 
   await page.getByPlaceholder('Cari produk...').fill('Luna Knit');
   await expect(page.locator('.product-card')).toHaveCount(1);
@@ -57,4 +58,5 @@ test('keeps navigation and product grid usable at a mobile viewport', async ({ p
   await expect(page.getByRole('link', { name: 'Shop all' })).toBeVisible();
   await expect(page.locator('.product-grid')).toBeVisible();
   await expect(page.locator('.product-card')).toHaveCount(8);
+  await page.screenshot({ path: 'test-results/storefront-mobile.png', fullPage: true });
 });
