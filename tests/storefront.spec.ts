@@ -54,9 +54,10 @@ test('keeps navigation and product grid usable at a mobile viewport', async ({ p
   await page.goto('/');
 
   await expect(page.getByRole('button', { name: 'Buka menu' })).toBeVisible();
-  await page.getByRole('button', { name: 'Buka menu' }).click();
-  await expect(page.getByRole('navigation').getByRole('link', { name: 'Shop all' })).toBeVisible();
   await expect(page.locator('.product-grid')).toBeVisible();
   await expect(page.locator('.product-card')).toHaveCount(8);
   await page.screenshot({ path: 'test-results/storefront-mobile.png', fullPage: true });
+
+  await page.getByRole('button', { name: 'Buka menu' }).click();
+  await expect(page.getByRole('navigation').getByRole('link', { name: 'Shop all' })).toBeVisible();
 });
