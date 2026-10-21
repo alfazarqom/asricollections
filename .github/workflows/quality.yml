@@ -30,3 +30,11 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Browser smoke tests
         run: npm run test:e2e
+      - name: Upload browser verification artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-browser-results
+          path: test-results/
+          if-no-files-found: warn
+          retention-days: 7
